@@ -3,5 +3,48 @@ layout: layout.liquid
 title: 11ty Boilerplate
 ---
 
-<h1>Yet Another 11ty <strong>Boilerplate</strong></h1>
-<img alt="pine" src="/images/pine.png" width="50" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Name Generator</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/sjf0zxt.css">
+    <link rel="stylesheet" href="screen.css">
+</head>
+<body>
+    <div x-data="randomGenerator()" class="container">
+        <h1 x-text="fortune"></h1>
+        <button @click="generateFortune()">Look Into Your Future!</button>
+        <button @click="resetFortune()">Reset</button>
+    </div>
+
+    <!-- All fortunes were found in various Reddit Queries -->
+    <script>
+        function randomGenerator() {
+            return {
+                fortunes: [
+                    "Your ability to find parking spots will reach legendary status.",
+                    "In the battle of you vs. a stubborn pickle jar, victory will be yours.",
+                    "Your future is as bright as your phone screen at 2 a.m.",
+                    "The road to success is long, but so is the line at the coffee shop.",
+                    "You will find happiness in unexpected places, like in the back of the fridge.",
+                    "The next time you think you’ve lost your keys, check your pockets. You’re welcome.",
+                    "The next time you feel lost, just remember: even Google Maps gets confused sometimes.",
+                    "A good friend will soon offer you advice. You’ll politely nod, then do the exact opposite.",
+                    "Soon, you will unlock a hidden skill… it’s probably finding the best memes."
+                ],
+                defaultText: "Click the button to see your fortune",
+                fortune: "Click the button to see your fortune",
+                generateFortune() {
+                    this.fortune = this.fortunes[Math.floor(Math.random() * this.fortunes.length)];
+                },
+                resetFortune() {
+                    this.fortune = this.defaultText;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
